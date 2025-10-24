@@ -1,204 +1,204 @@
 Event Explorer
-Event Explorer is a cross-platform mobile application built with React Native (React Native CLI). It provides a clean interface for browsing and viewing event details. This repository contains the native Android and iOS projects, TypeScript source files, and assets.
+Event Explorer is a cross-platform mobile application built with React Native (React Native CLI).
+It provides a clean interface for browsing, searching, and viewing event details.
+This repository contains the native Android and iOS projects, TypeScript source files, and assets.
 Repository snapshot and main files:
-•	Native projects: android/ and ios/.
-•	App entry: App.tsx.
-•	Languages: TypeScript primary, native modules in Kotlin/Swift where present. (GitHub)
-•   Download Apk: https://t.co/Eki2GULc1J
-•   App Screenshots link: https://t.co/ezU0fwtTkc 
+•	Native projects: android/ and ios/
+•	App entry: App.tsx
+•	Languages: TypeScript (primary), with native modules in Kotlin/Swift where present
+•	Download APK: https://t.co/Eki2GULc1J
+•	App Screenshots: https://t.co/ezU0fwtTkc
 ________________________________________
-Table of contents
-1.	Quick start
-2.	Prerequisites
-3.	Install dependencies
-4.	Running the app — development
+Table of Contents
+1.	Quick Start
+2.	Features
+3.	Prerequisites
+4.	Install Dependencies
+5.	Running the App — Development
 o	Android (device/emulator)
 o	iOS (simulator/device)
-5.	Running a production build
-o	Android release (APK/AAB) and signing
-o	iOS release and Xcode build
-6.	Screenshots and APK download
-7.	Project structure
-8.	Troubleshooting
-9.	Contributing
-10.	License
+6.	Running a Production Build
+o	Android Release (APK/AAB) and Signing
+o	iOS Release and Xcode Build
+7.	Screenshots and APK Download
+8.	Project Structure
+9.	Troubleshooting
+10.	Contributing
+11.	Notes & Maintenance
+12.	Contact / Author
 ________________________________________
-Quick start
+Quick Start
 Clone the repository and install dependencies:
 git clone https://github.com/tjmarccc/event-explorer.git
 cd event-explorer
-This project is a React Native CLI app (not an Expo-managed project). The repository contains android/ and ios/ folders and a TypeScript React Native source (App.tsx). (GitHub)
+This project is a React Native CLI app (not an Expo-managed project).
+The repository contains android/ and ios/ folders, plus a TypeScript React Native source (App.tsx).
+________________________________________
+Features
+Event Explorer is designed to be lightweight, responsive, and data-driven.
+Here are the main functional components:
+Core Functionalities
+•	Event Feed
+Displays a dynamic list of events with titles, dates, and locations.
+The data is fetched asynchronously or loaded from local storage.
+•	Event Details Page
+Tapping on an event shows a detailed view, including extended descriptions, location, date/time, and imagery.
+•	Search and Filtering
+Users can search events by name or filter them by category or date, enabling quick discovery.
+•	Persistent Local Storage (AsyncStorage)
+The app stores data locally using @react-native-async-storage/async-storage, allowing event data and user preferences (e.g., last viewed event) to persist between sessions.
+•	Offline Support
+Cached event data remains available offline, improving user experience and reducing repeated network calls.
+•	Smooth Navigation
+Implemented via React Navigation, providing seamless transitions between the Event List and Event Details screens.
+•	Cross-Platform UI
+Designed for both Android and iOS, ensuring responsive layouts across screen sizes.
+•	Optimized Performance
+Efficient re-renders, lazy loading, and proper state management minimize lag and battery usage.
 ________________________________________
 Prerequisites
 Before running the app, ensure you have the following installed and configured:
-•	Node.js (recommended LTS, e.g. v18+).
-•	Yarn or npm.
-•	Java Development Kit (JDK) 11 or later.
-•	Android Studio with Android SDK and an emulator (or a physical Android device with USB debugging enabled).
-•	Xcode (macOS) for iOS builds and Simulator.
-•	CocoaPods (for iOS native dependencies).
-•	(Optional) Ruby + Bundler if Gemfile is used for CocoaPods environment. (GitHub)
-Helpful platform guides
-•	React Native environment setup: https://reactnative.dev/docs/environment-setup
-•	Android Studio / SDK and emulator setup (via Android Studio docs)
+•	Node.js (recommended LTS, e.g., v18+)
+•	Yarn or npm
+•	Java Development Kit (JDK) 11 or later
+•	Android Studio with SDK and emulator (or a physical Android device with USB debugging enabled)
+•	Xcode (macOS) for iOS builds and Simulator
+•	CocoaPods (for iOS native dependencies)
+•	(Optional) Ruby + Bundler if the Gemfile is used for CocoaPods setup
+Helpful platform guides:
+•	React Native environment setup
+•	Android SDK and emulator setup (via Android Studio docs)
 •	Xcode and iOS simulator setup (Apple Developer documentation)
 ________________________________________
-Install dependencies
+Install Dependencies
 From the repo root:
 # Using npm
 npm install
 
 # or using Yarn
 yarn install
-If you are on macOS and building for iOS, install CocoaPods dependencies:
+If building for iOS (macOS only):
 cd ios
-# if the project uses Bundler (Gemfile), first:
+# Recommended if Gemfile is present
 bundle install
 bundle exec pod install
 
-# otherwise:
+# or
 pod install
 cd ..
-(There is a Gemfile in the repo, so using bundle install then bundle exec pod install is recommended.) (GitHub)
 ________________________________________
-Running the app — development
-Start Metro (the React Native packager):
-# root of repo
+Running the App — Development
+Start the Metro bundler:
 npm start
 # or
 yarn start
 Android (device/emulator)
-1.	Make sure an emulator is running or an Android device is connected via USB with Developer Mode and USB debugging enabled.
-2.	In a new terminal (root of repository):
-# install and run on Android
+1.	Ensure an emulator is running or a physical Android device is connected via USB.
+2.	Run:
 npx react-native run-android
 # or
 npm run android
 # or
 yarn android
-If you just want to open Metro and then trigger the Android run, you can press a in the Metro terminal.
+If Metro is running, pressing a in the terminal will also launch the Android app.
 iOS (simulator/device)
-Note: iOS builds must be done on macOS with Xcode installed.
-1.	Install CocoaPods as shown in the previous section and ensure pods were installed in ios/.
-2.	From the project root:
-# run on iOS simulator
+Requires macOS with Xcode installed.
+1.	Ensure CocoaPods dependencies are installed (cd ios && pod install).
+2.	Run:
 npx react-native run-ios
 # or
 npm run ios
 # or
 yarn ios
-Alternatively, open the workspace in Xcode:
+Alternatively, open in Xcode:
 cd ios
 open EventExplorer.xcworkspace
-Then select a target device (simulator or a connected device) in Xcode and press the Run button.
+Then build and run on a chosen simulator or connected device.
 ________________________________________
-Running a production build
-This section explains how to produce signed/release builds for Android and iOS.
-Android release (APK/AAB) and signing
-1.	Generate a release keystore (if you don't already have one):
+Running a Production Build
+Android Release (APK/AAB) and Signing
+1.	Generate a release keystore:
 keytool -genkey -v -keystore android/app/keystore/my-release-key.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000
-2.	Store keystore credentials in android/gradle.properties (recommended) or set them in your CI secrets. Example properties:
+2.	Add credentials to android/gradle.properties:
 MYAPP_UPLOAD_STORE_FILE=keystore/my-release-key.keystore
 MYAPP_UPLOAD_KEY_ALIAS=my-key-alias
 MYAPP_UPLOAD_STORE_PASSWORD=your_store_password
 MYAPP_UPLOAD_KEY_PASSWORD=your_key_password
-3.	Confirm android/app/build.gradle has a signingConfigs block for release that uses those variables. Example:
-signingConfigs {
-    release {
-        storeFile file(MYAPP_UPLOAD_STORE_FILE)
-        storePassword MYAPP_UPLOAD_STORE_PASSWORD
-        keyAlias MYAPP_UPLOAD_KEY_ALIAS
-        keyPassword MYAPP_UPLOAD_KEY_PASSWORD
-    }
-}
-buildTypes {
-    release {
-        signingConfig signingConfigs.release
-        minifyEnabled false
-    }
-}
-4.	Build the release APK (inside android/):
+3.	Verify android/app/build.gradle includes your release signing config.
+4.	Build:
 cd android
 ./gradlew clean
 ./gradlew assembleRelease
-The output APK is usually located at:
+Output:
 android/app/build/outputs/apk/release/app-release.apk
-If you prefer an AAB for Play Store distribution:
+To build an AAB (Play Store format):
 ./gradlew bundleRelease
-AAB output:
+Output:
 android/app/build/outputs/bundle/release/app-release.aab
-Notes
-•	Keep the keystore and its password safe — Google Play requires the same signing key for updates.
-•	If you need help with aligning/verifying the APK signature, use apksigner (Android SDK tools) or jarsigner.
-iOS release and Xcode build
-1.	Increment version and build numbers in Xcode (General tab of your target).
-2.	Ensure proper provisioning profiles and a valid Apple Developer account are configured in Xcode.
-3.	Open the workspace:
+Keep your keystore secure and never commit it to version control.
+________________________________________
+iOS Release and Xcode Build
+1.	Update version and build number in Xcode.
+2.	Ensure proper provisioning profiles and Apple Developer credentials.
+3.	Open:
 cd ios
 open EventExplorer.xcworkspace
-4.	Select a Generic iOS Device (or a connected device) and choose Product → Archive.
-5.	Use the Organizer window to export an archive for App Store distribution or export a development build for Ad Hoc / Enterprise testing.
-Notes
-•	If you use CI (e.g. GitHub Actions or Fastlane), configure Apple credentials and provisioning profiles appropriately.
-•	The repo includes native modules in Kotlin/Swift — confirm compatibility of any pods and native code if you update dependencies. (GitHub)
+4.	From the Xcode “Product” menu → “Archive”.
+5.	Export via Organizer for App Store or Ad Hoc distribution.
 ________________________________________
-Screenshots and APK download
-Screenshots are available at the link you provided:
+Screenshots and APK Download
 •	Screenshots: https://t.co/ezU0fwtTkc
-Android APK download:
-•	APK: https://t.co/Eki2GULc1J
+•	Android APK: https://t.co/Eki2GULc1J
 ________________________________________
-Project structure (high level)
-A representative structure based on what’s in the repository:
+Project Structure
 event-explorer/
 ├── android/                # Android native project
 ├── ios/                    # iOS native project
-├── src/                    # Application source code (screens, components)
+├── src/                    # App source code (screens, components, helpers)
 ├── App.tsx                 # App entry (TypeScript)
-├── index.js                # React Native entry
+├── index.js                # React Native entry point
 ├── package.json
 ├── tsconfig.json
 ├── metro.config.js
 └── README.md
-Adjust paths above if your source is in src/ subfolders — inspect the repo for exact structure. (GitHub)
 ________________________________________
 Troubleshooting
-Metro server not starting / bundling errors
-•	Kill existing Metro instances, clear cache, and restart:
+Metro server not starting
 npx react-native start --reset-cache
 Android build errors
-•	Make sure Android SDK, platform tools, and build tools are installed.
-•	Ensure ANDROID_HOME / ANDROID_SDK_ROOT is set and Android Studio's SDK path is correct.
-•	If you get Gradle/keystore signing errors, check android/gradle.properties and android/app/build.gradle.
+•	Ensure Android SDK and build tools are installed.
+•	Check ANDROID_HOME and ANDROID_SDK_ROOT environment variables.
+•	Verify keystore paths and passwords in gradle.properties.
 iOS build errors
-•	Ensure CocoaPods are installed and pods have been installed using pod install inside ios/.
-•	If Swift/CocoaPods issues appear, try pod repo update and reinstall pods:
 cd ios
+pod repo update
 pod deintegrate
 pod install
-Missing native dependencies after yarn install
-•	Rebuild native projects after adding or changing native modules:
+Native dependency issues
+Rebuild native modules:
 npx react-native run-android
 # or
-cd ios && pod install && cd ..
 npx react-native run-ios
 ________________________________________
 Contributing
-Contributions are welcome. Suggested workflow:
-1.	Fork the repository.
-2.	Create a feature branch: git checkout -b feature/your-feature.
-3.	Commit changes: git commit -m "Add something".
-4.	Push branch and open a pull request.
-When submitting PRs, include:
-•	Short description of changes
-•	Any setup steps to test locally
-•	Screenshots or recordings for UI changes
+1.	Fork the repository
+2.	Create a feature branch
+3.	git checkout -b feature/your-feature
+4.	Commit and push changes
+5.	Open a pull request with:
+o	Description of changes
+o	Testing instructions
+o	Screenshots (if UI updates)
 ________________________________________
-Notes & maintenance
-•	The project is TypeScript-based; ensure your IDE configuration supports TypeScript and React Native types.
-•	Keep native dependency versions and Android/iOS SDKs compatible; upgrades to react-native can require native migration steps.
-•	The repository contains both Android and iOS native subprojects — treat them as first-class when upgrading native dependencies.
+Notes & Maintenance
+•	The app is written in TypeScript, ensure your IDE supports TypeScript and React Native types.
+•	Keep dependencies updated and aligned with React Native’s latest stable version.
+•	Handle native module upgrades for Android/iOS when bumping React Native versions.
+•	AsyncStorage caching may require clearing after schema updates (AsyncStorage.clear() during testing).
 ________________________________________
 Contact / Author
-Wisdom Chukwuemeka email: wisdom32chukwuemeka@gmail.com phone(whatsapp): +2348130683699
+Author: Wisdom Chukwuemeka
+Email: wisdom32chukwuemeka@gmail.com
+Phone (WhatsApp): +2348130683699
+GitHub: https://github.com/tjmarccc/event-explorer
 
